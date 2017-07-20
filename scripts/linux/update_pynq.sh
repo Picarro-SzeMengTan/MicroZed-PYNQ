@@ -5,7 +5,8 @@ set -e
 UPDATEPYNQ_DIR=/home/xilinx/scripts
 REPO_DIR=/home/xilinx/pynq_git
 MAKEFILE_PATH=${REPO_DIR}/scripts/linux/makefile.pynq
-PYNQ_REPO=https://github.com/Xilinx/PYNQ.git
+#PYNQ_REPO=https://github.com/Xilinx/PYNQ.git
+PYNQ_REPO=https://github.com/ticktronaut/PYNQ.git
 
 
 if ! [ $(id -u) = 0 ]; then
