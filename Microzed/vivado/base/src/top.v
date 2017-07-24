@@ -306,7 +306,7 @@ module top(
   wire hdmi_out_ddc_sda_t;
   wire [0:0]hdmi_out_hpd;
   wire shield2sw_scl_i_in;
-  wire shield2sw_sda_i_in;
+  wire shield2sw_sda_i_in;p
   wire sw2shield_scl_o_out;
   wire sw2shield_scl_t_out;
   wire sw2shield_sda_o_out;

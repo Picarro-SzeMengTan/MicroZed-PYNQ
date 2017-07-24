@@ -4,6 +4,7 @@
 	#address-cells = <0x1>;
 	#size-cells = <0x1>;
 	compatible = "xlnx,zynq-7000";
+    model = "Zynq Zed Development Board";
 
 	chosen {
 		bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw earlyprintk rootfstype=ext4 rootwait devtmpfs.mount=1";
@@ -12,13 +13,13 @@
 
 	aliases {
 		ethernet0 = "/amba/ethernet@e000b000";
-		serial0 = "/amba/serial@e0000000";
+		serial0 = "/amba/serial@e0001000";
 		spi0 = "/amba/spi@e000d000";
 	};
 
 	memory {
 		device_type = "memory";
-		reg = <0x0 0x20000000>;
+		reg = <0x0 0x40000000>;
 	};
 
 	cpus {
