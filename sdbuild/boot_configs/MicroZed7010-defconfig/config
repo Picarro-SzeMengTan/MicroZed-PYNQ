@@ -15,6 +15,5 @@ BOARD_CONSTRAINTS ?= ${BOOT_CONFIG_ABS}/constraints.xdc
 LINUX_CONFIG ?= ${BOOT_CONFIG_ABS}/kernel.config
 UBOOT_CONFIG ?= ${BOOT_CONFIG_ABS}/u-boot.config
 BOARD_DTSI ?= ${BOOT_CONFIG_ABS}/microzed.dtsi
-BOOT_BITSTREAM := ${BOOT_CONFIG_ABS}/boot.bit
-
+BOOT_BITSTREAM ?= ${BOOT_CONFIG_ABS}/boot.bit
 include ${BOOT_CONFIG_DIR}/../common/Zynq7000.makefile
