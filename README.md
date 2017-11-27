@@ -1,5 +1,22 @@
 ![alt tag](./logo.png)
 
+---
+**This fork** of the open-source project [PYNQ](https://github.com/Xilinx/PYNQ) from Xilinx offers support for [MicroZed](http://zedboard.org/product/microzed) board (Zynq 7Z010 version) from Avnet. All initial modifications made here are strongly based on [Peter Odgens kind hints on the PYNQ google groups](https://groups.google.com/forum/#!topic/pynq_project/khyhCX16e_c) and [Johannes Vanoverscheides](https://github.com/siesse/PYNQ) fork. This work is used for further development on the open-source project [*FUSION* project](https://fusion-project.io).
+
+Feel free to experiment on your Microzed board (Zynq 7Z010 version for now):
+ 
+* either download the precompiled image [here](https://fusion-project.io/assets/pynq_mz7010_v1.0.img.zip) 
+* or, if desired, compile your own image following the instructions available in the [PYNQ documentation](http://pynq.readthedocs.io/en/latest/pynq_sd_card.html#building-the-image)
+
+<!-- From setup.py: "Please set the BOARD environment variable to get any BOARD specific overlays (e.g. Pynq-Z1)." -->
+<!-- The BOARD environment varialbe is set to *MicroZed7010* to get the according board specific overlays. These can be installed using the following command on the Microzed board:
+```
+sudo pip3.6 install --upgrade git+https://github.com/Xilinx/PYNQ.git
+```
+--> 
+
+---
+
 PYNQ is an open-source project from Xilinx that makes it easy to design embedded systems with Zynq All Programmable Systems on Chips (APSoCs). Using the Python language and libraries, designers can exploit the benefits of programmable logic and microprocessors in Zynq to build more capable and exciting embedded systems.
 PYNQ users can now create high performance embedded applications with
 -	parallel hardware execution
