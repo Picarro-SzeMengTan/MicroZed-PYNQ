@@ -30,8 +30,8 @@
 
 import pynq
 import pynq.lib
-import pynq.lib.video
-import pynq.lib.audio
+#import pynq.lib.video
+#import pynq.lib.audio
 from .constants import *
 from pynq.lib.logictools import TraceAnalyzer
 
@@ -41,12 +41,12 @@ __copyright__ = "Copyright 2017, Xilinx"
 __email__ = "pynq_support@xilinx.com"
 
 
-class BaseOverlay(pynq.Overlay):
-    """ The Base overlay for the Pynq-Z1
+class CustomOverlay(pynq.Overlay):
+    """ A mod for the Microzed (7010 version) of the Base overlay for the Pynq-Z1
 
     This overlay is designed to interact with all of the on board peripherals
-    and external interfaces of the Pynq-Z1 board. It exposes the following
-    attributes:
+    and external interfaces of the Microzed (7010 version) board. It exposes 
+    the following attributes:
 
     Attributes
     ----------
@@ -54,14 +54,14 @@ class BaseOverlay(pynq.Overlay):
          IO processor connected to the PMODA interface
     iop2 : IOP
          IO processor connected to the PMODB interface
-    iop3 : IOP
-         IO processor connected to the Arduino/ChipKit interface
+#    iop3 : IOP
+#         IO processor connected to the Arduino/ChipKit interface
     trace_pmoda : pynq.logictools.TraceAnalyzer
         Trace analyzer block on PMODA interface, controlled by PS.
     trace_pmodb : pynq.logictools.TraceAnalyzer
         Trace analyzer block on PMODB interface, controlled by PS. 
-    trace_arduino : pynq.logictools.TraceAnalyzer
-        Trace analyzer block on Arduino interface, controlled by PS. 
+#    trace_arduino : pynq.logictools.TraceAnalyzer
+#        Trace analyzer block on Arduino interface, controlled by PS. 
     leds : AxiGPIO
          4-bit output GPIO for interacting with the green LEDs LD0-3
     buttons : AxiGPIO
@@ -70,10 +70,10 @@ class BaseOverlay(pynq.Overlay):
          2-bit input GPIO for interacting with the switches SW0 and SW1
     rgbleds : [pynq.board.RGBLED]
          Wrapper for GPIO for LD4 and LD5 multicolour LEDs
-    video : pynq.lib.video.HDMIWrapper
-         HDMI input and output interfaces
-    audio : pynq.lib.audio.Audio
-         Headphone jack and on-board microphone
+#    video : pynq.lib.video.HDMIWrapper
+#         HDMI input and output interfaces
+#    audio : pynq.lib.audio.Audio
+#         Headphone jack and on-board microphone
 
     """
 
@@ -82,11 +82,11 @@ class BaseOverlay(pynq.Overlay):
         if self.is_loaded():
             self.iop1.mbtype = "Pmod"
             self.iop2.mbtype = "Pmod"
-            self.iop3.mbtype = "Arduino"
+#            self.iop3.mbtype = "Arduino"
 
             self.PMODA = self.iop1.mb_info
             self.PMODB = self.iop2.mb_info
-            self.ARDUINO = self.iop3.mb_info
+#            self.ARDUINO = self.iop3.mb_info
 
             self.leds = self.swsleds_gpio.channel2
             self.switches = self.swsleds_gpio.channel1
@@ -106,6 +106,6 @@ class BaseOverlay(pynq.Overlay):
             self.trace_pmodb = TraceAnalyzer(
                 self.trace_analyzer_pmodb.description['ip'],
                 PYNQZ1_PMODB_SPECIFICATION)
-            self.trace_arduino = TraceAnalyzer(
-                self.trace_analyzer_arduino.description['ip'],
-                PYNQZ1_ARDUINO_SPECIFICATION)
+#            self.trace_arduino = TraceAnalyzer(
+#                self.trace_analyzer_arduino.description['ip'],
+#                PYNQZ1_ARDUINO_SPECIFICATION)
