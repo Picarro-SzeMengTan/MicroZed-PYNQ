@@ -8,7 +8,7 @@ Feel free to experiment on your Microzed board (Zynq 7Z010 version for now):
 * either download the precompiled image [here](https://fusion-project.io/assets/pynq_mz7010_v1.0.img.zip) 
 * or, if desired, compile your own image following the instructions available in the [PYNQ documentation](http://pynq.readthedocs.io/en/latest/pynq_sd_card.html#building-the-image)
 
-To install the moded notebooks of this fort open a terminal from your board and first remove all remains of the Pynq-Z1 board specific notebooks (note that the jupyter_notebooks must exist, otherwise setup.py will fail):
+Initially the notebooks and overlays for the Zynq-Z1 are installed. These do not work for the Microzed. To install the modded notebooks and overlays of this fork open a terminal from your board and first remove all remains of the Pynq-Z1 board specific notebooks (note that the jupyter_notebooks must exist, otherwise setup.py will fail):
 
 ```console
 sudo rm /home/xilinx/jupyter_notebooks/* -r
@@ -20,6 +20,8 @@ This is necessary to prevent parts of the old overlays to remain in your install
 ```console
 sudo pip3.6 install --upgrade git+https://github.com/ticktronaut/PYNQ.git
 ```
+
+Use the information on how to connect to Jupyter Notebooks of the [Getting Started](http://pynq.readthedocs.io/en/latest/getting_started.html#connecting-to-jupyter-notebooks) guide on the pynq website guide to connect to the Notebooks.
 
 <!-- From setup.py: "Please set the BOARD environment variable to get any BOARD specific overlays (e.g. Pynq-Z1)." -->
 <!-- The BOARD environment varialbe is set to *MicroZed7010* to get the according board specific overlays. These can be installed using the following command on the Microzed board:
