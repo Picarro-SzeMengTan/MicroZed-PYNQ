@@ -41,11 +41,15 @@ __copyright__ = "Copyright 2017, Xilinx"
 __email__ = "pynq_support@xilinx.com"
 
 
-class CustomOverlay(pynq.Overlay):
+class BaseOverlay(pynq.Overlay):
     """ A mod for the Microzed (7010 version) of the Base overlay for the Pynq-Z1
 
     This overlay is designed to interact with all of the on board peripherals
-    and external interfaces of the Microzed (7010 version) board. It exposes 
+    and external interfaces of the Microzed (7010 version) board. Since the Micro-
+    zed board does not have all peripherals, that the Pynq-Z1 has, some peripherals
+    like the HDMI or the arduino shield have been removed from the hardware design.
+    The zynq 7010 has less resources than the zynq 7020, so the whole hardware design 
+    without removing any components would not fit to this fpga anyway. It exposes 
     the following attributes:
 
     Attributes
