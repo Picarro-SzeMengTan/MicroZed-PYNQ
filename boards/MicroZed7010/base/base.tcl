@@ -43,7 +43,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project custom custom -part xc7z010clg400-1
+   create_project base base -part xc7z010clg400-1
    set_property BOARD_PART em.avnet.com:microzed_7010:part0:1.1 [current_project]
 }
 
@@ -2195,9 +2195,9 @@ launch_runs impl_1 -to_step write_bitstream -jobs 4
 wait_on_run impl_1
 
 # This hardware definition file will be used for microblaze projects
-file mkdir ./custom/custom.sdk
-write_hwdef -force  -file ./custom/custom.sdk/custom.hdf
-file copy -force ./custom/custom.sdk/custom.hdf .
+file mkdir ./base/base.sdk
+write_hwdef -force  -file ./base/base.sdk/base.hdf
+file copy -force ./base/base.sdk/base.hdf .
 
 # move and rename bitstream to final location
-file copy -force ./custom/custom.runs/impl_1/top.bit custom.bit
+file copy -force ./base/base.runs/impl_1/top.bit base.bit
