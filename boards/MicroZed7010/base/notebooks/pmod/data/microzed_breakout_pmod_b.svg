@@ -16,7 +16,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="microzed_breakout_pmod_b.svg">
+   sodipodi:docname="microzed_breakout_pmod_b.svg"
+   inkscape:export-filename="/home/gsa39665/make/code_projects/mz_pynq/PYNQ/boards/MicroZed7010/base/notebooks/pmod/data/microzed_breakout_pmod_b.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4">
     <linearGradient
@@ -1135,13 +1138,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.42808458"
-     inkscape:cx="266.34448"
-     inkscape:cy="84.452667"
+     inkscape:cx="422.75979"
+     inkscape:cy="72.718628"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="958"
-     inkscape:window-height="1059"
+     inkscape:window-width="904"
+     inkscape:window-height="1029"
      inkscape:window-x="0"
      inkscape:window-y="19"
      inkscape:window-maximized="0"
