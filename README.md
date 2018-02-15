@@ -1,12 +1,12 @@
 ![alt tag](./logo.png)
 
 ---
-**This fork** of the open-source project [PYNQ](https://github.com/Xilinx/PYNQ) from Xilinx offers support for [MicroZed](http://zedboard.org/product/microzed) board (Zynq 7Z010 version) from Avnet. All initial modifications made here are strongly based on [Peter Odgens kind hints on the PYNQ google groups](https://groups.google.com/forum/#!topic/pynq_project/khyhCX16e_c) and [Johannes Vanoverscheides](https://github.com/siesse/PYNQ) fork. This work is used for further development on the open-source project [*FUSION* project](https://fusion-project.io).
+**This fork** of the open-source project [PYNQ](https://github.com/Xilinx/PYNQ) from Xilinx offers support for [MicroZed](http://zedboard.org/product/microzed) boards (both versions, Zynq 7Z010 and 7Z020) from Avnet. All initial modifications made here are strongly based on [Peter Odgens kind hints on the PYNQ google groups](https://groups.google.com/forum/#!topic/pynq_project/khyhCX16e_c) and [Johannes Vanoverscheides](https://github.com/siesse/PYNQ) fork. This work is used for further development on the open-source project [*FUSION* project](https://fusion-project.io).
 
-Feel free to experiment on your Microzed board (Zynq 7Z010 version for now):
+Feel free to experiment on your Microzed board:
  
-* either download the precompiled image [here](https://fusion-project.io/assets/pynq_mz7010_v1.0.img.zip) 
-* or, if desired, compile your own image following the instructions available in the [PYNQ documentation](http://pynq.readthedocs.io/en/latest/pynq_sd_card.html#building-the-image)
+* either download the precompiled image here: [version Zynq 7Z010](https://fusion-project.io/assets/pynq_mz7010_v1.0.img.zip) or [version Zynq 7Z020](https://fusion-project.io/assets/pynq_mz7020_v1.0.img.zip)
+* or, if desired, compile your own image following the instructions available in the [PYNQ documentation](http://pynq.readthedocs.io/en/latest/pynq_sd_card.html#building-the-image) (Do not forget to set the target to the desired board, for instance *make REALEASE=MicroZed7020-Wily*)
 
 Initially the notebooks and overlays for the Zynq-Z1 are installed. These do not work for the Microzed. To install the modded notebooks and overlays of this fork open a terminal from your board and first remove all remains of the Pynq-Z1 board specific notebooks (note that the jupyter_notebooks must exist, otherwise setup.py will fail):
 
