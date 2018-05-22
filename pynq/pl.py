@@ -101,9 +101,9 @@ class _TCL:
     interrupt_controllers : dict
         All AXI interrupt controllers in the system attached to
         a PS7 interrupt line. Key is the name of the controller;
-        value is a dictionary mapping parent interrupt controller and the 
+        value is a dictionary mapping parent interrupt controller and the
         line index of this interrupt:
-        {str: {'parent': str, 'index' : int}}. 
+        {str: {'parent': str, 'index' : int}}.
         The PS7 is the root of the hierarchy and is unnamed.
     interrupt_pins : dict
         All pins in the design attached to an interrupt controller.
@@ -121,8 +121,8 @@ class _TCL:
                'gpio': dict, 'fullpath': str}}
     clock_dict : dict
         All the PL clocks that can be controlled by the PS. Key is the index
-        of the clock (e.g., 0 for `fclk0`); value is a dictionary mapping the 
-        divisor values and the enable flag (1 for enabled, and 
+        of the clock (e.g., 0 for `fclk0`); value is a dictionary mapping the
+        divisor values and the enable flag (1 for enabled, and
         0 for disabled):
         {index: {'divisor0' : int, 'divisor1' : int, 'enable' : int}}
 
@@ -139,14 +139,14 @@ class _TCL:
 
         Note
         ----
-        If this method is called on an unsupported architecture it will warn 
+        If this method is called on an unsupported architecture it will warn
         and return without initialization
 
         """
-        
+
         if not isinstance(tcl_name, str):
             raise TypeError("tcl_name has to be a string")
-        
+
         # Initialize result variables
         self.intc_names = []
         self.interrupt_controllers = {}
@@ -159,6 +159,7 @@ class _TCL:
         self.ip_dict = {}
         self.gpio_dict = {}
         self.clock_dict = {}
+        self.family = "xc7z"
 
         # Key strings to search for in the TCL file
         family_pat = "create_project"
@@ -457,7 +458,7 @@ class PLMeta(type):
     """
     _bitfile_name = BS_BOOT
     _timestamp = ""
-    
+
     if CPU_ARCH_IS_SUPPORTED:
         _tcl = _TCL(TCL_BOOT)
         _ip_dict = _tcl.ip_dict
@@ -484,7 +485,7 @@ class PLMeta(type):
 
         Note
         ----
-        If this method is called on an unsupported architecture it will warn 
+        If this method is called on an unsupported architecture it will warn
         and return an empty string
 
         """
@@ -492,7 +493,7 @@ class PLMeta(type):
             warnings.warn("Pynq does not support the CPU Architecture: {}"
                           .format(CPU_ARCH), ResourceWarning)
             return ""
-        
+
         cls.client_request()
         cls.server_update()
         return cls._bitfile_name
@@ -704,7 +705,7 @@ class PLMeta(type):
 
         This method will clear all the related dictionaries, including IP
         dictionary, GPIO dictionary, etc.
-        
+
         """
         cls._ip_dict.clear()
         cls._gpio_dict.clear()
@@ -775,9 +776,9 @@ class PL(metaclass=PLMeta):
     interrupt_controllers : dict
         All AXI interrupt controllers in the system attached to
         a PS7 interrupt line. Key is the name of the controller;
-        value is a dictionary mapping parent interrupt controller and the 
+        value is a dictionary mapping parent interrupt controller and the
         line index of this interrupt:
-        {str: {'parent': str, 'index' : int}}. 
+        {str: {'parent': str, 'index' : int}}.
         The PS7 is the root of the hierarchy and is unnamed.
     interrupt_pins : dict
         All pins in the design attached to an interrupt controller.

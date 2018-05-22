@@ -69,7 +69,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2016.1
+set scripts_vivado_version 2017.2
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -177,7 +177,7 @@ proc create_hier_cell_misc_2 { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_misc_2() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_misc_2() - Empty argument(s)!"}
      return
   }
 
@@ -262,7 +262,7 @@ proc create_hier_cell_misc_1 { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_misc_1() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_misc_1() - Empty argument(s)!"}
      return
   }
 
@@ -350,7 +350,7 @@ proc create_hier_cell_lcp_lmb { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_lcp_lmb() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_lcp_lmb() - Empty argument(s)!"}
      return
   }
 
@@ -429,7 +429,7 @@ proc create_hier_cell_generator_select { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_generator_select() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_generator_select() - Empty argument(s)!"}
      return
   }
 
@@ -499,7 +499,7 @@ proc create_hier_cell_misc { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_misc() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_misc() - Empty argument(s)!"}
      return
   }
 
@@ -629,7 +629,7 @@ proc create_hier_cell_trace_analyzer { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_trace_analyzer() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_trace_analyzer() - Empty argument(s)!"}
      return
   }
 
@@ -749,7 +749,7 @@ proc create_hier_cell_pattern_generator { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_pattern_generator() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_pattern_generator() - Empty argument(s)!"}
      return
   }
 
@@ -891,7 +891,7 @@ proc create_hier_cell_lcp_mb { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_lcp_mb() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_lcp_mb() - Empty argument(s)!"}
      return
   }
 
@@ -998,18 +998,17 @@ CONFIG.C_ALL_OUTPUTS {1} \
 CONFIG.C_GPIO_WIDTH {1} \
  ] $lcp_intr
 
+  # Create instance: lcp_lmb
+  create_hier_cell_lcp_lmb $hier_obj lcp_lmb
 
   # Create instance: mb, and set properties
-  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.6 mb ]
+  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 mb ]
   set_property -dict [ list \
 CONFIG.C_DEBUG_ENABLED {1} \
 CONFIG.C_D_AXI {1} \
 CONFIG.C_D_LMB {1} \
 CONFIG.C_I_LMB {1} \
  ] $mb
-
-  # Create instance: lcp_lmb
-  create_hier_cell_lcp_lmb $hier_obj lcp_lmb
 
   # Create instance: mb_axi_periph, and set properties
   set mb_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 mb_axi_periph ]
@@ -1076,7 +1075,7 @@ proc create_hier_cell_boolean_generator { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_boolean_generator() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_boolean_generator() - Empty argument(s)!"}
      return
   }
 
@@ -1191,7 +1190,7 @@ proc create_hier_cell_FSM_generator { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_FSM_generator() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_FSM_generator() - Empty argument(s)!"}
      return
   }
 
@@ -1282,9 +1281,6 @@ CONFIG.use_bram_block.VALUE_SRC {DEFAULT} \
   connect_bd_intf_net -intf_net mb_axi_periph_M09_AXI [get_bd_intf_pins S_AXI] [get_bd_intf_pins fsm_bram_rst_addr/S_AXI]
 
   # Create port connections
-  connect_bd_net -net fsm_io_switch_fsm_data_o [get_bd_pins fsm_data_o] [get_bd_pins fsm_io_switch/fsm_data_o]
-  connect_bd_net -net fsm_io_switch_fsm_input [get_bd_pins fsm_io_switch/fsm_input] [get_bd_pins misc/In2]
-  connect_bd_net -net fsm_io_switch_fsm_tri_o [get_bd_pins fsm_tri_o] [get_bd_pins fsm_io_switch/fsm_tri_o]
   connect_bd_net -net S00_ARESETN_1 [get_bd_pins s_axi_aresetn] [get_bd_pins fsm_bram_ctrl/s_axi_aresetn] [get_bd_pins fsm_bram_rst_addr/s_axi_aresetn] [get_bd_pins fsm_controller/reset_n] [get_bd_pins fsm_io_switch/s_axi_aresetn]
   connect_bd_net -net clk1_1 [get_bd_pins sample_clk] [get_bd_pins fsm_controller/clk] [get_bd_pins fsm_generator_mem/clkb]
   connect_bd_net -net concat_addrB_dout [get_bd_pins fsm_addrb_mux/a] [get_bd_pins misc/dout4]
@@ -1293,6 +1289,9 @@ CONFIG.use_bram_block.VALUE_SRC {DEFAULT} \
   connect_bd_net -net controls_input_1 [get_bd_pins controls_input] [get_bd_pins fsm_controller/controls_input]
   connect_bd_net -net fsm_controller_0_fsm_enb [get_bd_pins fsm_controller/fsm_enb] [get_bd_pins fsm_generator_mem/enb]
   connect_bd_net -net fsm_controller_0_fsm_rst [get_bd_pins fsm_addrb_mux/sel] [get_bd_pins fsm_controller/fsm_rst]
+  connect_bd_net -net fsm_io_switch_fsm_data_o [get_bd_pins fsm_data_o] [get_bd_pins fsm_io_switch/fsm_data_o]
+  connect_bd_net -net fsm_io_switch_fsm_input [get_bd_pins fsm_io_switch/fsm_input] [get_bd_pins misc/In2]
+  connect_bd_net -net fsm_io_switch_fsm_tri_o [get_bd_pins fsm_tri_o] [get_bd_pins fsm_io_switch/fsm_tri_o]
   connect_bd_net -net logic_4bit_0_dout [get_bd_pins fsm_generator_mem/web] [get_bd_pins misc/dout3]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins s_axi_aclk] [get_bd_pins fsm_bram_ctrl/s_axi_aclk] [get_bd_pins fsm_bram_rst_addr/s_axi_aclk] [get_bd_pins fsm_io_switch/s_axi_aclk]
   connect_bd_net -net slice_dout_8_5_Dout [get_bd_pins fsm_io_switch/fsm_ns_out_8_5] [get_bd_pins misc/Dout]
@@ -1312,7 +1311,7 @@ proc create_hier_cell_mb2_lmb { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_mb2_lmb() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_mb2_lmb() - Empty argument(s)!"}
      return
   }
 
@@ -1391,7 +1390,7 @@ proc create_hier_cell_mb1_lmb { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_mb1_lmb() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_mb1_lmb() - Empty argument(s)!"}
      return
   }
 
@@ -1470,7 +1469,7 @@ proc create_hier_cell_lcp { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_lcp() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_lcp() - Empty argument(s)!"}
      return
   }
 
@@ -1609,7 +1608,7 @@ proc create_hier_cell_iop2 { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_iop2() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_iop2() - Empty argument(s)!"}
      return
   }
 
@@ -1666,7 +1665,7 @@ CONFIG.CONST_VAL {0} \
   set logic_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 logic_1 ]
 
   # Create instance: mb, and set properties
-  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.6 mb ]
+  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 mb ]
   set_property -dict [ list \
 CONFIG.C_DEBUG_ENABLED {1} \
 CONFIG.C_D_AXI {1} \
@@ -1809,7 +1808,7 @@ proc create_hier_cell_iop1 { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_iop1() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_iop1() - Empty argument(s)!"}
      return
   }
 
@@ -1866,7 +1865,7 @@ CONFIG.CONST_VAL {0} \
   set logic_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 logic_1 ]
 
   # Create instance: mb, and set properties
-  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:9.6 mb ]
+  set mb [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 mb ]
   set_property -dict [ list \
 CONFIG.C_DEBUG_ENABLED {1} \
 CONFIG.C_D_AXI {1} \
@@ -2009,7 +2008,7 @@ proc create_hier_cell_debounced_pb { parentCell nameHier } {
   variable script_folder
 
   if { $parentCell eq "" || $nameHier eq "" } {
-     catch {common::send_msg_id "BD_TCL-102" "ERROR" create_hier_cell_debounced_pb() - Empty argument(s)!"}
+     catch {common::send_msg_id "BD_TCL-102" "ERROR" "create_hier_cell_debounced_pb() - Empty argument(s)!"}
      return
   }
 
@@ -2449,10 +2448,10 @@ CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR1 {1} \
 CONFIG.PCW_FCLK3_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR0 {1} \
 CONFIG.PCW_FCLK3_PERIPHERAL_DIVISOR1 {1} \
-CONFIG.PCW_FCLK_CLK0_BUF {true} \
-CONFIG.PCW_FCLK_CLK1_BUF {true} \
-CONFIG.PCW_FCLK_CLK2_BUF {false} \
-CONFIG.PCW_FCLK_CLK3_BUF {false} \
+CONFIG.PCW_FCLK_CLK0_BUF {TRUE} \
+CONFIG.PCW_FCLK_CLK1_BUF {TRUE} \
+CONFIG.PCW_FCLK_CLK2_BUF {FALSE} \
+CONFIG.PCW_FCLK_CLK3_BUF {FALSE} \
 CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {100} \
 CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {50} \
 CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ {100} \
@@ -2724,12 +2723,10 @@ CONFIG.PCW_MIO_PRIMITIVE {54} \
 CONFIG.PCW_MIO_TREE_PERIPHERALS {unassigned#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#unassigned#Quad SPI Flash#unassigned#unassigned#unassigned#unassigned#unassigned#UART 0#UART 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#unassigned#SD 0#unassigned#unassigned#unassigned#unassigned#Enet 0#Enet 0} \
 CONFIG.PCW_MIO_TREE_SIGNALS {unassigned#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#unassigned#qspi_fbclk#unassigned#unassigned#unassigned#unassigned#unassigned#rx#tx#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#unassigned#cd#unassigned#unassigned#unassigned#unassigned#mdc#mdio} \
 CONFIG.PCW_M_AXI_GP0_ENABLE_STATIC_REMAP {0} \
-CONFIG.PCW_M_AXI_GP0_FREQMHZ {10} \
 CONFIG.PCW_M_AXI_GP0_ID_WIDTH {12} \
 CONFIG.PCW_M_AXI_GP0_SUPPORT_NARROW_BURST {0} \
 CONFIG.PCW_M_AXI_GP0_THREAD_ID_WIDTH {12} \
 CONFIG.PCW_M_AXI_GP1_ENABLE_STATIC_REMAP {0} \
-CONFIG.PCW_M_AXI_GP1_FREQMHZ {10} \
 CONFIG.PCW_M_AXI_GP1_ID_WIDTH {12} \
 CONFIG.PCW_M_AXI_GP1_SUPPORT_NARROW_BURST {0} \
 CONFIG.PCW_M_AXI_GP1_THREAD_ID_WIDTH {12} \
@@ -2908,23 +2905,16 @@ CONFIG.PCW_SPI_PERIPHERAL_FREQMHZ {166.666666} \
 CONFIG.PCW_SPI_PERIPHERAL_VALID {0} \
 CONFIG.PCW_S_AXI_ACP_ARUSER_VAL {31} \
 CONFIG.PCW_S_AXI_ACP_AWUSER_VAL {31} \
-CONFIG.PCW_S_AXI_ACP_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_ACP_ID_WIDTH {3} \
-CONFIG.PCW_S_AXI_GP0_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_GP0_ID_WIDTH {6} \
-CONFIG.PCW_S_AXI_GP1_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_GP1_ID_WIDTH {6} \
 CONFIG.PCW_S_AXI_HP0_DATA_WIDTH {64} \
-CONFIG.PCW_S_AXI_HP0_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_HP0_ID_WIDTH {6} \
 CONFIG.PCW_S_AXI_HP1_DATA_WIDTH {64} \
-CONFIG.PCW_S_AXI_HP1_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_HP1_ID_WIDTH {6} \
 CONFIG.PCW_S_AXI_HP2_DATA_WIDTH {64} \
-CONFIG.PCW_S_AXI_HP2_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_HP2_ID_WIDTH {6} \
 CONFIG.PCW_S_AXI_HP3_DATA_WIDTH {64} \
-CONFIG.PCW_S_AXI_HP3_FREQMHZ {10} \
 CONFIG.PCW_S_AXI_HP3_ID_WIDTH {6} \
 CONFIG.PCW_TPIU_PERIPHERAL_CLKSRC {External} \
 CONFIG.PCW_TPIU_PERIPHERAL_DIVISOR0 {1} \
@@ -3158,14 +3148,14 @@ CONFIG.NUM_MI {4} \
   connect_bd_net -net iop3_sw2ar_tri_o [get_bd_ports arduino_tri_o] [get_bd_pins lcp/arduino_tri_o]
   connect_bd_net -net iop_interrupts_dout [get_bd_pins iop_interrupts/dout] [get_bd_pins system_interrupts/intr]
   connect_bd_net -net logic_1_dout [get_bd_pins iop1/ext_reset_in] [get_bd_pins iop2/ext_reset_in] [get_bd_pins lcp/ext_reset_in] [get_bd_pins logic_1/dout]
+  connect_bd_net -net mb_JB1_sw2pmod_data_out [get_bd_ports pmodJB_data_out] [get_bd_pins iop2/sw2pmod_data_out]
+  connect_bd_net -net mb_JB1_sw2pmod_tri_out [get_bd_ports pmodJB_tri_out] [get_bd_pins iop2/sw2pmod_tri_out]
   connect_bd_net -net mb_iop1_intr_ack_Dout [get_bd_pins iop1/iop1_intr_ack] [get_bd_pins mb_iop1_intr_ack/Dout]
   connect_bd_net -net mb_iop1_reset_Dout [get_bd_pins iop1/aux_reset_in] [get_bd_pins mb_iop1_reset/Dout]
   connect_bd_net -net mb_iop2_intr_ack_Dout [get_bd_pins iop2/iop2_intr_ack] [get_bd_pins mb_iop2_intr_ack/Dout]
   connect_bd_net -net mb_iop2_reset_Dout [get_bd_pins iop2/aux_reset_in] [get_bd_pins mb_iop2_reset/Dout]
   connect_bd_net -net mb_lcp_intr_ack_Dout [get_bd_pins lcp/lcp_intr_ack] [get_bd_pins mb_lcp_intr_ack/Dout]
   connect_bd_net -net mb_lcp_reset_Dout [get_bd_pins lcp/aux_reset_in] [get_bd_pins mb_lcp_reset/Dout]
-  connect_bd_net -net mb_JB1_sw2pmod_data_out [get_bd_ports pmodJB_data_out] [get_bd_pins iop2/sw2pmod_data_out]
-  connect_bd_net -net mb_JB1_sw2pmod_tri_out [get_bd_ports pmodJB_tri_out] [get_bd_pins iop2/sw2pmod_tri_out]
   connect_bd_net -net mdm_1_debug_sys_rst [get_bd_pins iop1/mb_debug_sys_rst] [get_bd_pins iop2/mb_debug_sys_rst] [get_bd_pins lcp/mb_debug_sys_rst] [get_bd_pins mdm_1/Debug_SYS_Rst]
   connect_bd_net -net pb_in_1 [get_bd_ports pb_in] [get_bd_pins debounced_pb/Din]
   connect_bd_net -net pmod2sw_data_in_1 [get_bd_ports pmodJA_data_in] [get_bd_pins iop1/pmod2sw_data_in]
@@ -3186,14 +3176,14 @@ CONFIG.NUM_MI {4} \
   create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs iop1/mb_bram_ctrl/S_AXI/Mem0] SEG_mb_bram_ctrl_1_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x42000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs iop2/mb_bram_ctrl/S_AXI/Mem0] SEG_mb_bram_ctrl_2_Mem0
   create_bd_addr_seg -range 0x00010000 -offset 0x44000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs lcp/mb_bram_ctrl/S_AXI/Mem0] SEG_mb_bram_ctrl_3_Mem0
-  create_bd_addr_seg -range 0x00010000 -offset 0x41800000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs system_interrupts/s_axi/Reg] SEG_system_interrupts_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41800000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs system_interrupts/S_AXI/Reg] SEG_system_interrupts_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_gpio/S_AXI/Reg] SEG_axi_gpio_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_iic/S_AXI/Reg] SEG_axi_iic_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A10000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_spi/AXI_LITE/Reg] SEG_axi_quad_spi_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces iop1/mb/Instruction] [get_bd_addr_segs iop1/mb1_lmb/lmb_bram_if_cntlr/SLMB/Mem] SEG_ilmb_bram_if_cntlr_Mem
   create_bd_addr_seg -range 0x00010000 -offset 0x40010000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_intr/S_AXI/Reg] SEG_iop1_intr_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_lmb/lmb_bram_if_cntlr/SLMB1/Mem] SEG_lmb_bram_if_cntlr_Mem
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_intc/s_axi/Reg] SEG_mb1_intc_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_intc/S_AXI/Reg] SEG_mb1_intc_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_timer/S_AXI/Reg] SEG_mb1_timer_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces iop1/mb/Data] [get_bd_addr_segs iop1/mb1_pmod_io_switch/S00_AXI/S00_AXI_reg] SEG_pmod_io_switch_0_S00_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40010000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_intr/S_AXI/Reg] SEG_iop2_intr_Reg
@@ -3201,21 +3191,21 @@ CONFIG.NUM_MI {4} \
   create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces iop2/mb/Instruction] [get_bd_addr_segs iop2/mb2_lmb/lmb_bram_if_cntlr/SLMB/Mem] SEG_lmb_bram_if_cntlr_Mem
   create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_gpio/S_AXI/Reg] SEG_mb2_gpio_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40800000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_iic/S_AXI/Reg] SEG_mb2_iic_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_intc/s_axi/Reg] SEG_mb2_intc_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_intc/S_AXI/Reg] SEG_mb2_intc_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_pmod_io_switch/S00_AXI/S00_AXI_reg] SEG_mb2_pmod_io_switch_S00_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A10000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_spi/AXI_LITE/Reg] SEG_mb2_spi_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41C00000 [get_bd_addr_spaces iop2/mb/Data] [get_bd_addr_segs iop2/mb2_timer/S_AXI/Reg] SEG_mb2_timer_Reg
   create_bd_addr_seg -range 0x00008000 -offset 0xC0000000 [get_bd_addr_spaces lcp/lcp_mb/axi_cdma_0/Data] [get_bd_addr_segs lcp/FSM_generator/fsm_bram_ctrl/S_AXI/Mem0] SEG_fsm_bram_ctrl_Mem0
   create_bd_addr_seg -range 0x00040000 -offset 0x10000000 [get_bd_addr_spaces lcp/lcp_mb/axi_cdma_0/Data] [get_bd_addr_segs lcp/pattern_generator/pattern_bram_ctrl/S_AXI/Mem0] SEG_pattern_bram_ctrl_Mem0
   create_bd_addr_seg -range 0x20000000 -offset 0x20000000 [get_bd_addr_spaces lcp/lcp_mb/axi_cdma_0/Data] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x00010000 -offset 0x44A30000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/FSM_generator/fsm_io_switch/S_AXI/S_AXI_reg] SEG_fsm_io_switch_S_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A10000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/axi_cdma_0/S_AXI_LITE/Reg] SEG_axi_cdma_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x41E00000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/trace_analyzer/axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40010000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/pattern_generator/pattern_generator_nsamples_and_single/S_AXI/Reg] SEG_axi_gpio_pg_nsamples_single_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40000000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/pattern_generator/pattern_generator_tri_control/S_AXI/Reg] SEG_axi_gpio_pg_tri_control_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/axi_intc_0/s_axi/Reg] SEG_axi_intc_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x41200000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/axi_intc_0/S_AXI/Reg] SEG_axi_intc_0_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x44A00000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/boolean_generator/boolean_generator/S_AXI/S_AXI_reg] SEG_boolean_generator_0_S_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40050000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/controllers_reg/S_AXI/Reg] SEG_controllers_reg_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x44A30000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/FSM_generator/fsm_io_switch/S_AXI/S_AXI_reg] SEG_fsm_io_switch_S_AXI_reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40020000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/generator_select/function_sel/S_AXI/Reg] SEG_function_sel_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x40040000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/lcp_intr/S_AXI/Reg] SEG_lcp_intr_Reg
   create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces lcp/lcp_mb/mb/Data] [get_bd_addr_segs lcp/lcp_mb/lcp_lmb/lmb_bram_if_cntlr/SLMB1/Mem] SEG_lmb_bram_if_cntlr_Mem
